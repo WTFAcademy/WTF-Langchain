@@ -152,7 +152,7 @@ dynamic_prompt = FewShotPromptTemplate(
     input_variables=["adjective"],
 )
 
-# 输入量极小，因此所有样本数据都会被选中
+# 输入占用 1 个词，剩余的 3 个词不足以加入任何样本
 print(dynamic_prompt.format(adjective="big"))
 ```
 
