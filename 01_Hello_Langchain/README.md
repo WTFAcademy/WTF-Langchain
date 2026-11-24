@@ -58,63 +58,29 @@ tags:
 
 ## 第一个 Langchain 应用
 
-这个简单的程序只有 1 行安装指令和 7 行代码：
-
-### 安装指令
+在独立的 Python 环境安装 LangChain 的 OpenAI 集成。
 
 ```shell
-pip install langchain==0.0.235 openai
+python -m pip install -U langchain-openai
 ```
 
-### 代码
+代码会读取环境变量 `OPENAI_API_KEY`。未设置时，它会提示你输入密钥。可通过 `OPENAI_MODEL` 指定项目有权使用的聊天模型。详见 [LangChain ChatOpenAI 文档](https://docs.langchain.com/oss/python/integrations/chat/openai)。
 
 [Hello_Langchain.ipynb](./Hello_Langchain.ipynb)
 
 ```python
-from langchain.chat_models import ChatOpenAI
-from langchain.schema import HumanMessage
-
 import os
-os.environ['OPENAI_API_KEY'] = '您的有效OpenAI API Key'
+from getpass import getpass
 
-chat = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo")
-response = chat([ HumanMessage(content="Hello Langchain!") ])
-print(response)
+from langchain_openai import ChatOpenAI
+
+if not os.environ.get("OPENAI_API_KEY"):
+    os.environ["OPENAI_API_KEY"] = getpass("OpenAI API key: ")
+
+chat = ChatOpenAI(model=os.environ.get("OPENAI_MODEL", "gpt-5-mini"))
+response = chat.invoke("Hello Langchain!")
+print(response.content)
 ```
-
-你应该能看到类似这样的输出：
-
-```shell
-content='Hello! How can I assist you today?' additional_kwargs={} example=False
-```
-
-我们拆解程序，学习该代码的结构：
-
-1. 以下系统命令安装必要的Python包，langchain和openai。
-
-  ```shell
-  pip install langchain==0.0.235 openai
-  ```
-
-2. 以下代码将OpenAI的API Key设置在环境变量中。默认情况下，Langchain会从环境变量 `OPENAI_API_KEY` 中读取API Key。注意，在代码中直接嵌入API Key明文并不安全，切勿将API Key直接提交到代码仓库。我们建议利用.env文件和python-dotenv包来管理API Key。
-
-  ```python
-  import os
-  os.environ['OPENAI_API_KEY'] = '您的有效OpenAI API Key'
-  ```
-    
-3. 以下代码导入了 `ChatOpenAI` 类，该类封装了OpenAI的聊天模型。`ChatOpenAI` 类的初始化参数 `temperature` 用于控制模型的生成文本的多样性。`temperature` 越大，生成的文本越多样，但也越不可控。`temperature` 越小，生成的文本越单一，但也越可控。`temperature` 的取值范围为 0 到 1，默认值为 0.5。初始化参数 `model_name` 用于指定使用的模型，默认值为 `gpt-3.5-turbo`。
-
-  ```python
-  chat = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo")
-  ```
-
-4. 以下代码完成与OpenAI GPT模型的第一次对话，并打印出响应。
-
-  ```python
-  response = chat([ HumanMessage(content="Hello Langchain!") ])
-  print(response)
-  ```
 
 ## 运行代码
 

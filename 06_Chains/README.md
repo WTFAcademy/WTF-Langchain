@@ -8,6 +8,8 @@ tags:
 
 # WTF Langchain极简入门: 06. 链
 
+> 本讲保留 LangChain 0.0.235 的历史示例。出现 `text-davinci-003` 的代码用于说明旧版 Completions API，该模型已退役。可运行的聊天模型示例见[第 1 讲](../01_Hello_Langchain/README.md)。
+
 最近在学习Langchain框架，顺手写一个“WTF Langchain极简入门”，供小白们使用（编程大佬可以另找教程）。本教程默认以下前提：
 - 使用Python版本的[Langchain](https://github.com/hwchase17/langchain)
 - LLM使用OpenAI的模型

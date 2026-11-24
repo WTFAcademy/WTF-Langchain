@@ -33,7 +33,7 @@ Developer Guide](https://docs.aws.amazon.com/pdfs/serverless/latest/devguide/ser
 1. 安装必要的 `Python` 包
 
     ```shell
-    !pip install -q langchain==0.0.235 openai chromadb pymupdf tiktoken
+    !pip install -q langchain==0.0.235 openai==0.28.1 chromadb pymupdf tiktoken
     ```
 
 2. 设置OpenAI环境
