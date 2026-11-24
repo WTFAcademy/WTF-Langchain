@@ -11,9 +11,9 @@ tags:
 最近在学习Langchain框架，顺手写一个“WTF Langchain极简入门”，供小白们使用（编程大佬可以另找教程）。本教程默认以下前提：
 - 使用Python版本的[Langchain](https://github.com/hwchase17/langchain)
 - LLM使用OpenAI的模型
-- Langchain目前还处于快速发展阶段，版本迭代频繁，为避免示例代码失效，本教程统一使用版本 **0.0.235**
+- 使用 Python 3.11+ 和 LangChain v1。本讲使用 `langchain-openai` 1.8.5。
 
-根据Langchain的[代码约定](https://github.com/hwchase17/langchain/blob/v0.0.235/pyproject.toml#L14C1-L14C24)，Python版本 ">=3.8.1,<4.0"。
+
 
 推特：[@verysmallwoods](https://twitter.com/verysmallwoods)
 
@@ -61,7 +61,7 @@ tags:
 在独立的 Python 环境安装 LangChain 的 OpenAI 集成。
 
 ```shell
-python -m pip install -U langchain-openai
+python -m pip install -r requirements.txt
 ```
 
 代码会读取环境变量 `OPENAI_API_KEY`。未设置时，它会提示你输入密钥。可通过 `OPENAI_MODEL` 指定项目有权使用的聊天模型。详见 [LangChain ChatOpenAI 文档](https://docs.langchain.com/oss/python/integrations/chat/openai)。
